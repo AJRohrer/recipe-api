@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.recipes.api.recipeapi.RecipeApiApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.968 s - in com.recipes.api.recipeapi.RecipeApiApplicationTests
