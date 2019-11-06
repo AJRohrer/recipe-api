@@ -1,8 +1,12 @@
-package com.recipes.api.recipeapi;
+package com.recipes.api.recipeapi.controller;
 
+import com.recipes.api.recipeapi.Recipe;
+import com.recipes.api.recipeapi.RecipeCategory;
 import javafx.util.Pair;
 import org.springframework.boot.SpringApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.Request;
 
 import java.util.ArrayList;
 
@@ -17,6 +21,11 @@ public class recipeController {
     @ResponseBody
     public String sayHello(){
         return "Hello Andrew";
+    }
+
+    @RequestMapping(value="/users", method = RequestMethod.GET)
+    public ResponseEntity<Object> getUsers(){
+        return null;
     }
 
     @CrossOrigin(origins = "*")
