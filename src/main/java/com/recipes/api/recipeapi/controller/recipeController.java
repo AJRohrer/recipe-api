@@ -2,6 +2,8 @@ package com.recipes.api.recipeapi.controller;
 
 import com.recipes.api.recipeapi.Recipe;
 import com.recipes.api.recipeapi.RecipeCategory;
+import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
+import com.recipes.api.recipeapi.model.User;
 import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import org.springframework.boot.SpringApplication;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,13 @@ public class recipeController {
     @RequestMapping(value="/users", method = RequestMethod.GET)
     public ResponseEntity<Object> getUsers(){
         return null;
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/User")
+    public User getUser(@RequestParam String userName){
+        UsersDataAccessImpl uda = new UsersDataAccessImpl();
+        return uda.getUser(userName);
     }
 
     @CrossOrigin(origins = "*")

@@ -10,4 +10,6 @@ public interface IUsersDataAccess {
 
     public abstract List<User> getUsers();
 
+    public abstract User getUser(String s);
+
 }

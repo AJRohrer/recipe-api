@@ -6,6 +6,11 @@ public class User {
     private String UserFirstName;
     private String UserLastName;
     private String UserPassword;
+    private String UserName;
+
+    public String getUserName() { return UserName; }
+
+    public void setUserName(String userName) { UserName = userName; }
 
     public String getUserID() {
         return UserID;
