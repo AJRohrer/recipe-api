@@ -1,18 +1,18 @@
 package com.recipes.api.recipeapi;
 
-import javafx.util.Pair;
+import com.recipes.api.recipeapi.utilities.KeyValuePair;
 
 import java.util.ArrayList;
 
 public class Recipe {
 
     private String _recipeName;
-    private ArrayList<Pair<String,String>> _quantityAndIngredient;
+    private ArrayList<KeyValuePair<String,String>> _quantityAndIngredient;
     private ArrayList<String> _directions;
     private String _url;
     private String _notes;
 
-    public Recipe(String recipeName, ArrayList<Pair<String,String>> quantityAndIngredients,
+    public Recipe(String recipeName, ArrayList<KeyValuePair<String,String>> quantityAndIngredients,
                   ArrayList<String> directions, String url, String notes){
         _recipeName = recipeName;
         _quantityAndIngredient = quantityAndIngredients;
@@ -29,7 +29,7 @@ public class Recipe {
         return _url;
     }
 
-    public ArrayList<Pair<String, String>> getQuantityAndIngredient(){
+    public ArrayList<KeyValuePair<String, String>> getQuantityAndIngredient(){
         return _quantityAndIngredient;
     }
 

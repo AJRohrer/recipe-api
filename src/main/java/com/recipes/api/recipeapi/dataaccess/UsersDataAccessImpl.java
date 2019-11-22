@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 
+import javax.annotation.Resource;
 import java.awt.geom.GeneralPath;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+@Resource
 public class UsersDataAccessImpl implements IUsersDataAccess {
 
     @Autowired

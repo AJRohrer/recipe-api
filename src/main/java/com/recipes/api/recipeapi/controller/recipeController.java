@@ -2,11 +2,10 @@ package com.recipes.api.recipeapi.controller;
 
 import com.recipes.api.recipeapi.Recipe;
 import com.recipes.api.recipeapi.RecipeCategory;
-import javafx.util.Pair;
+import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import org.springframework.boot.SpringApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.Request;
 
 import java.util.ArrayList;
 
@@ -20,6 +19,11 @@ public class recipeController {
     @RequestMapping(value="/hello", method = RequestMethod.GET)
     @ResponseBody
     public String sayHello(){
+
+        KeyValuePair kvp = new KeyValuePair("test", "test");
+        kvp.setKey("testset");
+        kvp.setValue("testval");
+
         return "Hello Andrew";
     }
 
@@ -32,12 +36,13 @@ public class recipeController {
     @RequestMapping(value="/category", method = RequestMethod.GET)
     public ArrayList<Recipe> getCategories(){
         RecipeCategory rc = new RecipeCategory("Asian");
-        ArrayList<Pair<String,String>> ingredientsAndQuantity = new ArrayList<>();
-        ingredientsAndQuantity.add(new Pair("1 Cup", "White rice"));
-        ingredientsAndQuantity.add(new Pair("2 Tbsp", "Soy Sauce"));
-        ingredientsAndQuantity.add(new Pair("1/2 Cup", "Carrots"));
-        ingredientsAndQuantity.add(new Pair("2", "Chicken Breast"));
-        ingredientsAndQuantity.add(new Pair("3 Cups", "Water"));
+        ArrayList<KeyValuePair<String,String>> ingredientsAndQuantity = new ArrayList<>();
+
+        ingredientsAndQuantity.add(new KeyValuePair<>("1 Cup", "White rice"));
+        ingredientsAndQuantity.add(new KeyValuePair<>("2 Tbsp", "Soy Sauce"));
+        ingredientsAndQuantity.add(new KeyValuePair<>("1/2 Cup", "Carrots"));
+        ingredientsAndQuantity.add(new KeyValuePair<>("2", "Chicken Breast"));
+        ingredientsAndQuantity.add(new KeyValuePair<>("3 Cups", "Water"));
         ArrayList<String> directions = new ArrayList<>();
         directions.add("Cook Chicken and rice in water.");
         directions.add("Add soy sauce.");
