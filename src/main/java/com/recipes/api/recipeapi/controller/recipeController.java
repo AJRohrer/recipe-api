@@ -42,6 +42,16 @@ public class recipeController {
     }
 
     @CrossOrigin(origins = "*")
+    @PostMapping("/AddUser")
+    public Boolean addUser(@RequestBody User u){
+
+        UsersDataAccessImpl uda = new UsersDataAccessImpl();
+        uda.createUser(u);
+
+        return true;
+    }
+
+    @CrossOrigin(origins = "*")
     @RequestMapping(value="/category", method = RequestMethod.GET)
     public ArrayList<Recipe> getCategories(){
         RecipeCategory rc = new RecipeCategory("Asian");
