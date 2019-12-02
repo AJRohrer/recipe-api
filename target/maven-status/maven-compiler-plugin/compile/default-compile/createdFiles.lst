@@ -1,7 +1,9 @@
-com\recipes\api\recipeapi\RecipeApiApplication.class
-com\recipes\api\recipeapi\dataaccess\IUsersDataAccess.class
-com\recipes\api\recipeapi\dataaccess\UsersDataAccessImpl.class
-com\recipes\api\recipeapi\Recipe.class
-com\recipes\api\recipeapi\RecipeCategory.class
-com\recipes\api\recipeapi\model\User.class
-com\recipes\api\recipeapi\controller\recipeController.class
+com/recipes/api/recipeapi/controller/recipeController.class
+com/recipes/api/recipeapi/Recipe.class
+com/recipes/api/recipeapi/dataaccess/IUsersDataAccess.class
+com/recipes/api/recipeapi/dataaccess/UsersDataAccessImpl.class
+com/recipes/api/recipeapi/RecipeApiApplication.class
+com/recipes/api/recipeapi/model/User.class
+com/recipes/api/recipeapi/utilities/KeyValuePair.class
+com/recipes/api/recipeapi/RecipeCategory.class
+com/recipes/api/recipeapi/mappers/UserRowMapper.class

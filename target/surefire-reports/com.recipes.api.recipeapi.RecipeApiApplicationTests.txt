@@ -1,9 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.recipes.api.recipeapi.RecipeApiApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.941 s <<< FAILURE! - in com.recipes.api.recipeapi.RecipeApiApplicationTests
-contextLoads(com.recipes.api.recipeapi.RecipeApiApplicationTests)  Time elapsed: 0.006 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'usersDataAccessImpl': Unsatisfied dependency expressed through field 'jdbctemplate'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.jdbc.core.JdbcTemplate' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.jdbc.core.JdbcTemplate' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.933 s - in com.recipes.api.recipeapi.RecipeApiApplicationTests
