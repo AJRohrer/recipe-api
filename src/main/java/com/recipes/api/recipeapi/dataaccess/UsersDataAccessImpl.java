@@ -1,21 +1,17 @@
 package com.recipes.api.recipeapi.dataaccess;
 
-import com.recipes.api.recipeapi.mappers.UserRowMapper;
 import com.recipes.api.recipeapi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
 
+import java.sql.*;
+
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import javax.annotation.Resource;
-import java.awt.geom.GeneralPath;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -64,7 +60,32 @@ public class UsersDataAccessImpl implements IUsersDataAccess {
 
     @Override
     public User getUser(String searchUserName){
-        SqlParameterSource sps = new MapSqlParameterSource().addValue("userName", searchUserName);
-        return jdbctemplate.queryForObject("SELECT UserID, UserFirstName, UserLastName, UserName, UserPassword FROM Users WHERE UserName = ?", new Object[]{searchUserName}, new UserRowMapper());
+
+        try {
+            SimpleDriverDataSource ds = new SimpleDriverDataSource();
+            ds.setDriver(new com.mysql.jdbc.Driver());
+            ds.setUrl("jdbc:mysql://localhost:3306/Grocery_Schema");
+            ds.setUsername("root");
+            ds.setPassword("docker");
+            JdbcTemplate jtp = new JdbcTemplate(ds);
+
+            //Get User Object
+            RowMapper<User> rmUser = (ResultSet result, int rowNum) -> {
+                User u = new User();
+                u.setUserID(result.getString("UserID"));
+                u.setUserFirstName(result.getString("UserFirstName"));
+                u.setUserLastName(result.getString("UserLastName"));
+                u.setUserName(result.getString("UserName"));
+                u.setUserPassword(result.getString("UserPassword"));
+                return u;
+
+            };
+            String sql = "SELECT * FROM Users WHERE UserName = 'AJRohrer'";
+
+            return jtp.queryForObject(sql, rmUser);
+        } catch (SQLException e) {
+            return null;
+        }
+
     }
 }
