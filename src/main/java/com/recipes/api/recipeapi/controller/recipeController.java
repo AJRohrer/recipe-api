@@ -1,7 +1,6 @@
 package com.recipes.api.recipeapi.controller;
 
-import com.recipes.api.recipeapi.Recipe;
-import com.recipes.api.recipeapi.RecipeCategory;
+import com.recipes.api.recipeapi.dataaccess.CategoryDataAccessImpl;
 import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
 import com.recipes.api.recipeapi.model.Category;
 import com.recipes.api.recipeapi.model.User;
@@ -11,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.ArrayList;
 
 @SpringBootApplication
@@ -22,9 +22,9 @@ public class recipeController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/Categories")
-    public ArrayList<Category> getUserCategories(@RequestParam int userId){
-        //Get all categories for user here.
-        return null;
+    public List<Category> getUserCategories(@RequestParam int userId){
+        CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
+        return cda.getUserCategories(userId);
     }
 
     @CrossOrigin(origins = "*")
@@ -37,11 +37,6 @@ public class recipeController {
         kvp.setValue("testval");
 
         return "Hello Andrew";
-    }
-
-    @RequestMapping(value="/users", method = RequestMethod.GET)
-    public ResponseEntity<Object> getUsers(){
-        return null;
     }
 
     @CrossOrigin(origins = "*")
@@ -59,31 +54,6 @@ public class recipeController {
         uda.createUser(u);
 
         return true;
-    }
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value="/category", method = RequestMethod.GET)
-    public ArrayList<Recipe> getCategories(){
-        RecipeCategory rc = new RecipeCategory("Asian");
-        ArrayList<KeyValuePair<String,String>> ingredientsAndQuantity = new ArrayList<>();
-
-        ingredientsAndQuantity.add(new KeyValuePair<>("1 Cup", "White rice"));
-        ingredientsAndQuantity.add(new KeyValuePair<>("2 Tbsp", "Soy Sauce"));
-        ingredientsAndQuantity.add(new KeyValuePair<>("1/2 Cup", "Carrots"));
-        ingredientsAndQuantity.add(new KeyValuePair<>("2", "Chicken Breast"));
-        ingredientsAndQuantity.add(new KeyValuePair<>("3 Cups", "Water"));
-        ArrayList<String> directions = new ArrayList<>();
-        directions.add("Cook Chicken and rice in water.");
-        directions.add("Add soy sauce.");
-        directions.add("Steam carrots then add them to mixture.");
-        directions.add("Serve after cooling for 5 minutes.");
-
-
-        Recipe r = new Recipe("Fried Rice", ingredientsAndQuantity, directions, "https://my.testrecipe.com","This is the first recipe");
-        rc.addRecipeToCategory(r);
-        r = new Recipe("Eggrolls", ingredientsAndQuantity, directions, "https://my.testrecipe.com","This is the second recipe");
-        rc.addRecipeToCategory(r);
-        return rc.getCategoryRecipes();
     }
 
 }
