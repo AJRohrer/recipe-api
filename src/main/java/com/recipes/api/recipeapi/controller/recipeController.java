@@ -3,18 +3,28 @@ package com.recipes.api.recipeapi.controller;
 import com.recipes.api.recipeapi.Recipe;
 import com.recipes.api.recipeapi.RecipeCategory;
 import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
+import com.recipes.api.recipeapi.model.Category;
 import com.recipes.api.recipeapi.model.User;
 import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@SpringBootApplication
 @RestController
 public class recipeController {
     public static void main(String[] args){
         SpringApplication.run(recipeController.class, args);
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/Categories")
+    public ArrayList<Category> getUserCategories(@RequestParam int userId){
+        //Get all categories for user here.
+        return null;
     }
 
     @CrossOrigin(origins = "*")
