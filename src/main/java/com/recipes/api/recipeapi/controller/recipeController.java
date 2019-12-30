@@ -1,8 +1,10 @@
 package com.recipes.api.recipeapi.controller;
 
 import com.recipes.api.recipeapi.dataaccess.CategoryDataAccessImpl;
+import com.recipes.api.recipeapi.dataaccess.RecipeDataAccessImpl;
 import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
 import com.recipes.api.recipeapi.model.Category;
+import com.recipes.api.recipeapi.model.Recipe;
 import com.recipes.api.recipeapi.model.User;
 import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import org.springframework.boot.SpringApplication;
@@ -20,12 +22,29 @@ public class recipeController {
         SpringApplication.run(recipeController.class, args);
     }
 
+
+    //************************************CATEGORY ENDPOINTS************************************
     @CrossOrigin(origins = "*")
     @GetMapping("/Categories")
     public List<Category> getUserCategories(@RequestParam int userId){
         CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
         return cda.getUserCategories(userId);
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/Recipes")
+    public List<Recipe> getCategoryRecipes(int CategoryId){
+        CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
+        return cda.getRecipesInCategory(CategoryId);
+    }
+    //************************************CATEGORY ENDPOINTS************************************
+
+    //*************************************RECIPE ENDPOINTS*************************************
+    public Recipe getRecipe(int RecipeID) {
+        RecipeDataAccessImpl rda = new RecipeDataAccessImpl();
+        return rda.getRecipe(RecipeID);
+    }
+    //*************************************RECIPE ENDPOINTS*************************************
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/hello", method = RequestMethod.GET)

@@ -2,9 +2,19 @@ package com.recipes.api.recipeapi.model;
 
 public class Direction {
 
+
+    private int _DirectionID;
     private int _DirectionNumber;
     private String _DirectionDescription;
     private int _RecipeID;
+
+    public int get_DirectionID() {
+        return _DirectionID;
+    }
+
+    public void set_DirectionID(int _DirectionID) {
+        this._DirectionID = _DirectionID;
+    }
 
     public int get_DirectionNumber() {
         return _DirectionNumber;

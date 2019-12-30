@@ -1,24 +1,20 @@
 package com.recipes.api.recipeapi.dataaccess;
 
 import com.recipes.api.recipeapi.model.Category;
+import com.recipes.api.recipeapi.model.Recipe;
+import com.recipes.api.recipeapi.utilities.RecipeJDBCTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class CategoryDataAccessImpl {
 
     public List<Category> getUserCategories(int userID){
         try {
-            SimpleDriverDataSource ds = new SimpleDriverDataSource();
-            ds.setDriver(new com.mysql.jdbc.Driver());
-            ds.setUrl("jdbc:mysql://localhost:3306/Grocery_Schema");
-            ds.setUsername("root");
-            ds.setPassword("docker");
-            JdbcTemplate jtp = new JdbcTemplate(ds);
+
+            JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
 
             RowMapper<Category> rmCategory = (ResultSet result, int rowNum) -> {
                 Category c = new Category();
@@ -32,9 +28,33 @@ public class CategoryDataAccessImpl {
 
             return jtp.query(sql, rmCategory, userID);
 
-        } catch (SQLException e){
+        } catch (Exception e){
             return null;
         }
     }
+
+    public List<Recipe> getRecipesInCategory(int CategoryId){
+        try {
+            JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
+
+            RowMapper<Recipe> rmRecipe = (ResultSet result, int rowNum) -> {
+                Recipe r = new Recipe();
+
+                r.set_RecipeID(result.getInt("RecipeID"));
+                r.set_CategoryID(result.getInt("CategoryID"));
+                r.set_RecipeName(result.getString("RecipeName"));
+                r.set_UserID(result.getInt("UserID"));
+                r.set_RecipeUrl(result.getString("RecipeURL"));
+                return r;
+            };
+            String sql = "SELECT * FROM Recipes WHERE CategoryID = ?";
+            return jtp.query(sql, rmRecipe, CategoryId);
+
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
 
 }
