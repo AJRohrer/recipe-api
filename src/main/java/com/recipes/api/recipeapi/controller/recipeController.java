@@ -33,14 +33,16 @@ public class recipeController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/Recipes")
-    public List<Recipe> getCategoryRecipes(int CategoryId){
+    public List<Recipe> getCategoryRecipes(@RequestParam int CategoryId){
         CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
         return cda.getRecipesInCategory(CategoryId);
     }
     //************************************CATEGORY ENDPOINTS************************************
 
     //*************************************RECIPE ENDPOINTS*************************************
-    public Recipe getRecipe(int RecipeID) {
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/Recipe")
+    public Recipe getRecipe(@RequestParam int RecipeID) {
         RecipeDataAccessImpl rda = new RecipeDataAccessImpl();
         return rda.getRecipe(RecipeID);
     }
