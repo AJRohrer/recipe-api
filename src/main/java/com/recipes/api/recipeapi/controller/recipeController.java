@@ -22,6 +22,11 @@ public class recipeController {
         SpringApplication.run(recipeController.class, args);
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/hello")
+    public String helloWorld(@RequestParam String teststring){
+        return "This is the test string: " + teststring;
+    }
 
     //************************************CATEGORY ENDPOINTS************************************
     @CrossOrigin(origins = "*")
@@ -47,18 +52,6 @@ public class recipeController {
         return rda.getRecipe(RecipeID);
     }
     //*************************************RECIPE ENDPOINTS*************************************
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value="/hello", method = RequestMethod.GET)
-    @ResponseBody
-    public String sayHello(){
-
-        KeyValuePair kvp = new KeyValuePair("test", "test");
-        kvp.setKey("testset");
-        kvp.setValue("testval");
-
-        return "Hello Andrew";
-    }
 
     @CrossOrigin(origins = "*")
     @GetMapping("/User")

@@ -13,9 +13,9 @@ public class RecipeJDBCTemplate {
         try {
             SimpleDriverDataSource ds = new SimpleDriverDataSource();
             ds.setDriver(new com.mysql.jdbc.Driver());
-            ds.setUrl("jdbc:mysql://localhost:3306/Grocery_Schema");
-            ds.setUsername("root");
-            ds.setPassword("docker");
+            ds.setUrl("jdbc:mysql://recipedb.czkixtffedni.us-east-2.rds.amazonaws.com:3306/Grocery_Schema");
+            ds.setUsername("admin");
+            ds.setPassword("docker02245!");
             return new JdbcTemplate(ds);
         } catch (SQLException e) {
             return null;
