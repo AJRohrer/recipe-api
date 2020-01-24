@@ -56,5 +56,18 @@ public class CategoryDataAccessImpl {
 
     }
 
+    public int createNewCategory(Category c){
+        try {
+            JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
+
+            String sql = "INSERT INTO Categories VALUES (0,?,?)";
+
+            return jtp.update(sql, new Object[] {c.get_CategoryName(),c.get_UserID()});
+
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
 
 }

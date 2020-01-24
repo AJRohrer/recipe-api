@@ -35,4 +35,17 @@ public class RecipeDataAccessImpl {
             return null;
         }
     }
+
+    public int createNewRecipe(Recipe r){
+        try {
+            JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
+
+            String sql = "INSERT INTO Recipes VALUES (0,?,?,?,?)";
+
+            return jtp.update(sql, new Object[] {r.get_CategoryID(),r.get_RecipeName(),r.get_UserID(),r.get_RecipeUrl()});
+
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 }

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipeapi
+spec:
+  selector:
+    matchLabels:
+      app: recipeapi
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: recipeapi
+    spec:
+      containers:
+        - name: vue-api
+          image: ajrohrer/recipeapi:v1.4
+          ports:
+            - containerPort: 8090

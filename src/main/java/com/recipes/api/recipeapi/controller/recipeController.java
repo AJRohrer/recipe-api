@@ -9,6 +9,7 @@ import com.recipes.api.recipeapi.model.User;
 import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,14 @@ public class recipeController {
         CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
         return cda.getRecipesInCategory(CategoryId);
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.POST, value = "/CreateCategory")
+    public int createCategory(@RequestBody Category c) {
+        CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
+        return cda.createNewCategory(c);
+    }
+
     //************************************CATEGORY ENDPOINTS************************************
 
     //*************************************RECIPE ENDPOINTS*************************************
@@ -50,6 +59,13 @@ public class recipeController {
     public Recipe getRecipe(@RequestParam int RecipeID) {
         RecipeDataAccessImpl rda = new RecipeDataAccessImpl();
         return rda.getRecipe(RecipeID);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.POST, value = "/CreateRecipe")
+    public int createRecipe(@RequestBody Recipe r) {
+        RecipeDataAccessImpl rda = new RecipeDataAccessImpl();
+        return rda.createNewRecipe(r);
     }
     //*************************************RECIPE ENDPOINTS*************************************
 
