@@ -55,7 +55,7 @@ public class CategoryDataAccessImpl {
         }
     }
 
-    public List<Recipe> getRecipesInCategory(int CategoryId){
+    public List<Recipe> getRecipesInCategory(int userid){
         try {
             JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
 
@@ -69,8 +69,8 @@ public class CategoryDataAccessImpl {
                 r.set_RecipeUrl(result.getString("RecipeURL"));
                 return r;
             };
-            String sql = "SELECT * FROM Recipes WHERE CategoryID = ?";
-            return jtp.query(sql, rmRecipe, CategoryId);
+            String sql = "SELECT * FROM Recipes WHERE UserID = ?";
+            return jtp.query(sql, rmRecipe, userid);
 
         } catch (Exception e) {
             return null;

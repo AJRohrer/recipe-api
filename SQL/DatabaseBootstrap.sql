@@ -3,6 +3,10 @@
 --docker run --name andrewsql -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=sqlrecipe <image name>
 --SchemaName: recipedb
 
+--Java service connects under this user:
+-- UN: recipeapi
+-- PW: apirecipe
+
 
 Use recipedb;
 

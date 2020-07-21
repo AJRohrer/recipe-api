@@ -34,10 +34,10 @@ public class recipeController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping("/Recipes")
-    public List<Recipe> getCategoryRecipes(@RequestParam int CategoryId){
+    @GetMapping("/Recipes/{userid}")
+    public List<Recipe> getCategoryRecipes(@PathVariable int userid){
         CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
-        return cda.getRecipesInCategory(CategoryId);
+        return cda.getRecipesInCategory(userid);
     }
 
     @CrossOrigin(origins = "*")
