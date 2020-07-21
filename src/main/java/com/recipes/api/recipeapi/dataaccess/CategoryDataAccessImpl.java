@@ -6,10 +6,32 @@ import com.recipes.api.recipeapi.utilities.RecipeJDBCTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDataAccessImpl {
+
+    /*public List<Category> getUserCategories(int userID){
+        try{
+            Connection conn = RecipeJDBCTemplate.getDatabaseConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM Categories WHERE UserID = " + userID);
+            List<Category> userCategoryList = new ArrayList<>();
+            while(rs.next()){
+                Category c = new Category();
+                c.set_CategoryID(rs.getInt("CategoryID"));
+                c.set_CategoryName(rs.getString("CategoryName"));
+                c.set_UserID(rs.getInt("UserID"));
+                userCategoryList.add(c);
+            }
+            return userCategoryList;
+        } catch (Exception e) {
+            return null;
+        }
+    }*/
 
     public List<Category> getUserCategories(int userID){
         try {

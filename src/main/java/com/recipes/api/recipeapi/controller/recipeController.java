@@ -6,15 +6,11 @@ import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
 import com.recipes.api.recipeapi.model.Category;
 import com.recipes.api.recipeapi.model.Recipe;
 import com.recipes.api.recipeapi.model.User;
-import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.ArrayList;
 
 @SpringBootApplication
 @RestController
