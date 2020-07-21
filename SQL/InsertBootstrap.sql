@@ -1,4 +1,4 @@
-Use Grocery_Schema;
+Use recipedb;
 INSERT INTO Users VALUES(0, 'Andrew', 'Rohrer', 'AJRohrer', 'docker');
 INSERT INTO Users VALUES(0, 'Katherine', 'Rohrer', 'KARohrer', 'diddlydoos');
 INSERT INTO Users VALUES(0, 'Michael', 'Rohrer', 'MRRohrer', 'apple');

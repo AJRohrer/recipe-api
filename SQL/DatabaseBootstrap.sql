@@ -1,4 +1,10 @@
-Use Grocery_Schema;
+-- Bootstrap Database as container for development
+
+--docker run --name andrewsql -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=sqlrecipe <image name>
+--SchemaName: recipedb
+
+
+Use recipedb;
 
 Create table if not exists Users (
 	UserID int NOT NULL AUTO_INCREMENT,

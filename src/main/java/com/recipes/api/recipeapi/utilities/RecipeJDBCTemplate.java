@@ -15,9 +15,9 @@ public class RecipeJDBCTemplate {
         try {
             SimpleDriverDataSource ds = new SimpleDriverDataSource();
             ds.setDriver(new com.mysql.jdbc.Driver());
-            ds.setUrl("jdbc:mysql://recipedb.czkixtffedni.us-east-2.rds.amazonaws.com:3306/Grocery_Schema");
+            ds.setUrl("jdbc:mysql://recipedb.czkixtffedni.us-east-2.rds.amazonaws.com:3306/recipedb");
             ds.setUsername("admin");
-            ds.setPassword("docker02245!");
+            ds.setPassword("sqlrecipe");
             return new JdbcTemplate(ds);
         } catch (SQLException e) {
             return null;
@@ -26,7 +26,7 @@ public class RecipeJDBCTemplate {
 
     public static Connection getDatabaseConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://recipedb.czkixtffedni.us-east-2.rds.amazonaws.com:3306/Grocery_Schema", "admin", "docker02245!");
+            return DriverManager.getConnection("jdbc:mysql://recipedb.czkixtffedni.us-east-2.rds.amazonaws.com:3306/recipedb", "admin", "sqlrecipe");
         } catch (SQLException e){
             return null;
         }

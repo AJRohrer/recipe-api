@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ef12bdc-5702-4b3d-925f-086f2fd29ec4" name="Default Changelist" comment="Updated to java 11 and added new KeyValue Generic class">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/recipe-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/recipes/api/recipeapi/controller/recipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/recipes/api/recipeapi/controller/recipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/recipes/api/recipeapi/dataaccess/CategoryDataAccessImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/recipes/api/recipeapi/dataaccess/CategoryDataAccessImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQL/DatabaseBootstrap.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SQL/DatabaseBootstrap.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQL/InsertBootstrap.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SQL/InsertBootstrap.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/recipes/api/recipeapi/utilities/RecipeJDBCTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/recipes/api/recipeapi/utilities/RecipeJDBCTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
