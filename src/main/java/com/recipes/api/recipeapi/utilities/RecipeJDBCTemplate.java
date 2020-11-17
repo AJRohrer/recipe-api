@@ -16,8 +16,8 @@ public class RecipeJDBCTemplate {
             SimpleDriverDataSource ds = new SimpleDriverDataSource();
             ds.setDriver(new com.mysql.jdbc.Driver());
             ds.setUrl("jdbc:mysql://localhost:3306/recipedb");
-            ds.setUsername("recipeapi");
-            ds.setPassword("apirecipe");
+            ds.setUsername("root");
+            ds.setPassword("sqlrecipe");
             return new JdbcTemplate(ds);
         } catch (SQLException e) {
             return null;

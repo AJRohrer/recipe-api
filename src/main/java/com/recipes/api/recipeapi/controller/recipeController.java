@@ -6,6 +6,7 @@ import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
 import com.recipes.api.recipeapi.model.Category;
 import com.recipes.api.recipeapi.model.Recipe;
 import com.recipes.api.recipeapi.model.User;
+import com.recipes.api.recipeapi.requests.LoginRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,14 @@ import java.util.List;
 public class recipeController {
     public static void main(String[] args){
         SpringApplication.run(recipeController.class, args);
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/login")
+    public String isUserValid(@RequestBody LoginRequest lr){
+        UsersDataAccessImpl uda = new UsersDataAccessImpl();
+        User testuser = uda.TrySignin(lr);
+        return uda.TrySignin(lr).getUserID();
     }
 
     @CrossOrigin(origins = "*")
@@ -34,8 +43,8 @@ public class recipeController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/Recipes/{userid}")
-    public List<Recipe> getCategoryRecipes(@PathVariable int userid){
+    @GetMapping("/recipes/{userid}")
+    public List<Recipe> getUserRecipes(@PathVariable int userid){
         CategoryDataAccessImpl cda = new CategoryDataAccessImpl();
         return cda.getRecipesInCategory(userid);
     }
@@ -65,12 +74,12 @@ public class recipeController {
     }
     //*************************************RECIPE ENDPOINTS*************************************
 
-    @CrossOrigin(origins = "*")
+   /* @CrossOrigin(origins = "*")
     @GetMapping("/User")
     public User getUser(@RequestParam String userName){
         UsersDataAccessImpl uda = new UsersDataAccessImpl();
         return uda.getUser(userName);
-    }
+    }*/
 
     @CrossOrigin(origins = "*")
     @PostMapping("/AddUser")

@@ -1,13 +1,14 @@
 -- Bootstrap Database as container for development
 
 --docker run --name andrewsql -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=sqlrecipe <image name>
+--Create schema recipedb;
 --SchemaName: recipedb
 
 --Java service connects under this user:
 -- UN: recipeapi
 -- PW: apirecipe
 
-
+CREATE SCHEMA recipedb;
 Use recipedb;
 
 Create table if not exists Users (

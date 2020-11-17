@@ -1,6 +1,7 @@
 package com.recipes.api.recipeapi.dataaccess;
 
 import com.recipes.api.recipeapi.model.User;
+import com.recipes.api.recipeapi.requests.LoginRequest;
 import com.recipes.api.recipeapi.utilities.RecipeJDBCTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,7 +33,7 @@ public class UsersDataAccessImpl {
        return null; //TODO
     }
 
-    public User getUser(String searchUserName){
+    public User TrySignin(LoginRequest lr){
 
         try {
             JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
@@ -48,9 +49,9 @@ public class UsersDataAccessImpl {
                 return u;
 
             };
-            String sql = "SELECT * FROM Users WHERE UserName = '?'";
+            String sql = "SELECT * FROM Users WHERE UserName = ? AND UserPassword = ?";
 
-            return jtp.queryForObject(sql, rmUser, searchUserName);
+            return jtp.queryForObject(sql, rmUser, lr.getUsername(),lr.getPassword());
         } catch (Exception e) {
             return null;
         }
