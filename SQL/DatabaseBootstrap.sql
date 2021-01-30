@@ -1,6 +1,6 @@
 -- Bootstrap Database as container for development
 
---docker run --name andrewsql -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=sqlrecipe <image name>
+--docker run --name sqlrecipe -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=sqlrecipe <image name>
 --Create schema recipedb;
 --SchemaName: recipedb
 
