@@ -60,10 +60,10 @@ public class recipeController {
 
     //*************************************RECIPE ENDPOINTS*************************************
     @CrossOrigin(origins = "*")
-    @RequestMapping("/Recipe")
-    public Recipe getRecipe(@RequestParam int RecipeID) {
+    @GetMapping("/recipe/{recipeid}")
+    public Recipe getRecipe(@PathVariable int recipeid) {
         RecipeDataAccessImpl rda = new RecipeDataAccessImpl();
-        return rda.getRecipe(RecipeID);
+        return rda.getRecipe(recipeid);
     }
 
     @CrossOrigin(origins = "*")
