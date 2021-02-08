@@ -67,19 +67,12 @@ public class recipeController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.POST, value = "/CreateRecipe")
-    public int createRecipe(@RequestBody Recipe r) {
+    @RequestMapping(method = RequestMethod.POST, value = "/createrecipe")
+    public int createRecipe(@RequestBody Recipe createRecipeRequest) {
         RecipeDataAccessImpl rda = new RecipeDataAccessImpl();
-        return rda.createNewRecipe(r);
+        return rda.createNewRecipe(createRecipeRequest);
     }
     //*************************************RECIPE ENDPOINTS*************************************
-
-   /* @CrossOrigin(origins = "*")
-    @GetMapping("/User")
-    public User getUser(@RequestParam String userName){
-        UsersDataAccessImpl uda = new UsersDataAccessImpl();
-        return uda.getUser(userName);
-    }*/
 
     @CrossOrigin(origins = "*")
     @PostMapping("/AddUser")
@@ -91,4 +84,4 @@ public class recipeController {
         return true;
     }
 
-}
+ }
