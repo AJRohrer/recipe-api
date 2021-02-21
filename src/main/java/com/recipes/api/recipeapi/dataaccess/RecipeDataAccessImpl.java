@@ -1,6 +1,7 @@
 package com.recipes.api.recipeapi.dataaccess;
 
 import com.recipes.api.recipeapi.model.Recipe;
+import com.recipes.api.recipeapi.requests.RecipeRequest;
 import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import com.recipes.api.recipeapi.utilities.RecipeJDBCTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,13 +40,13 @@ public class RecipeDataAccessImpl {
         }
     }
 
-    public int createNewRecipe(Recipe r){
+    public int createNewRecipe(RecipeRequest rr){
         try {
             JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
 
             String sql = "INSERT INTO Recipes VALUES (0,?,?,?,?)";
 
-            return jtp.update(sql, new Object[] {r.get_CategoryID(),r.get_RecipeName(),r.get_UserID(),r.get_RecipeUrl()});
+            return jtp.update(sql, new Object[] {rr.getCategoryId(),rr.getRecipeName(),rr.getUserId(),rr.getRecipeUrl()});
 
         } catch (Exception e) {
             return 0;

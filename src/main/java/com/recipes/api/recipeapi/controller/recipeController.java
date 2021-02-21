@@ -6,6 +6,7 @@ import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
 import com.recipes.api.recipeapi.model.Category;
 import com.recipes.api.recipeapi.model.Recipe;
 import com.recipes.api.recipeapi.model.User;
+import com.recipes.api.recipeapi.requests.RecipeRequest;
 import com.recipes.api.recipeapi.requests.LoginRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -68,9 +69,9 @@ public class recipeController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST, value = "/createrecipe")
-    public int createRecipe(@RequestBody Recipe createRecipeRequest) {
+    public int createRecipe(@RequestBody RecipeRequest recipeRequest) {
         RecipeDataAccessImpl rda = new RecipeDataAccessImpl();
-        return rda.createNewRecipe(createRecipeRequest);
+        return rda.createNewRecipe(recipeRequest);
     }
     //*************************************RECIPE ENDPOINTS*************************************
 
