@@ -2,14 +2,13 @@ package com.recipes.api.recipeapi.dataaccess;
 
 import com.recipes.api.recipeapi.model.Recipe;
 import com.recipes.api.recipeapi.requests.RecipeRequest;
-import com.recipes.api.recipeapi.utilities.KeyValuePair;
 import com.recipes.api.recipeapi.utilities.RecipeJDBCTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Statement;
 
 public class RecipeDataAccessImpl {
 
@@ -40,16 +39,41 @@ public class RecipeDataAccessImpl {
         }
     }
 
-    public int createNewRecipe(RecipeRequest rr){
+    public boolean createNewRecipe(RecipeRequest rr){
         try {
-            JdbcTemplate jtp = RecipeJDBCTemplate.getDatabaseTemplate();
-
+            ResultSet rs = null;
             String sql = "INSERT INTO Recipes VALUES (0,?,?,?,?)";
 
-            return jtp.update(sql, new Object[] {rr.getCategoryId(),rr.getRecipeName(),rr.getUserId(),rr.getRecipeUrl()});
+            rs = insertRecipe(sql,rr);
+
+            if (rs != null && rs.next()){
+                IngredientDataAccessImpl idai = new IngredientDataAccessImpl();
+                DirectionDataAccessImpl ddai = new DirectionDataAccessImpl();
+                return idai.insertRecipeIngredients(rs.getInt(1), rr.getIngredients()) &&
+                        ddai.insertRecipeDirections(rs.getInt(1), rr.getDirections());
+            } else return false;
 
         } catch (Exception e) {
-            return 0;
+            System.out.println(e.toString());
+            return false;
         }
     }
+
+    private ResultSet insertRecipe(String sql, RecipeRequest rr) {
+        try {
+            PreparedStatement prepStatement = null;
+            prepStatement = RecipeJDBCTemplate.getDatabaseConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            prepStatement.setString(1, rr.getCategoryId());
+            prepStatement.setString(2, rr.getRecipeName());
+            prepStatement.setString(3, rr.getUserId());
+            prepStatement.setString(4, rr.getRecipeUrl());
+
+            prepStatement.executeUpdate();
+            return prepStatement.getGeneratedKeys();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
 }
