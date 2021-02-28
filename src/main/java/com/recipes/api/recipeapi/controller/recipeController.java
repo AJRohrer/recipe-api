@@ -8,6 +8,7 @@ import com.recipes.api.recipeapi.model.Recipe;
 import com.recipes.api.recipeapi.model.User;
 import com.recipes.api.recipeapi.requests.LoginRequest;
 import com.recipes.api.recipeapi.requests.RecipeRequest;
+import com.recipes.api.recipeapi.responses.LoginResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +24,10 @@ public class recipeController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/login")
-    public String isUserValid(@RequestBody LoginRequest lr){
+    public LoginResponse isUserValid(@RequestBody LoginRequest lr){
         UsersDataAccessImpl uda = new UsersDataAccessImpl();
-        User testuser = uda.TrySignin(lr);
-        return uda.TrySignin(lr).getUserID();
+        User user = uda.TrySignin(lr);
+        return new LoginResponse(user.getUserFirstName() + " " + user.getUserLastName(), user.getUserID());
     }
 
     @CrossOrigin(origins = "*")
