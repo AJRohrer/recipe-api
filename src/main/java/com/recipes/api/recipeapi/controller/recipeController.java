@@ -30,6 +30,10 @@ public class recipeController {
         return new LoginResponse(user.getUserFirstName() + " " + user.getUserLastName(), user.getUserID());
     }
 
+    public LoginResponse createUserAccount(@RequestBody CreateAccountRequest car){
+        LoginResponse lr = new LoginResponse()
+    }
+
     @CrossOrigin(origins = "*")
     @GetMapping("/hello")
     public String helloWorld(@RequestParam String teststring){
