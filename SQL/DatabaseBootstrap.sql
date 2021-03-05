@@ -17,6 +17,7 @@ Create table if not exists Users (
     UserLastName VARCHAR(100),
     UserName VARCHAR(100),
     UserPassword VARCHAR(100),
+    UserEmail VARCHAR(150),
     PRIMARY KEY (UserID)
 );
 

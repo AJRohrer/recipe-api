@@ -6,6 +6,7 @@ import com.recipes.api.recipeapi.dataaccess.UsersDataAccessImpl;
 import com.recipes.api.recipeapi.model.Category;
 import com.recipes.api.recipeapi.model.Recipe;
 import com.recipes.api.recipeapi.model.User;
+import com.recipes.api.recipeapi.requests.CreateAccountRequest;
 import com.recipes.api.recipeapi.requests.LoginRequest;
 import com.recipes.api.recipeapi.requests.RecipeRequest;
 import com.recipes.api.recipeapi.responses.LoginResponse;
@@ -30,8 +31,23 @@ public class recipeController {
         return new LoginResponse(user.getUserFirstName() + " " + user.getUserLastName(), user.getUserID());
     }
 
-    public LoginResponse createUserAccount(@RequestBody CreateAccountRequest car){
-        LoginResponse lr = new LoginResponse()
+    @CrossOrigin(origins = "*")
+    @PostMapping("/register")
+    public String createUserAccount(@RequestBody CreateAccountRequest car){
+        if (!car.getPassword().equals(car.getConfirmPassword())){
+            return ("PASSWORD_MISMATCH");
+        }
+        UsersDataAccessImpl udai = new UsersDataAccessImpl();
+
+        switch (udai.createUser(car)){
+            case EMAIL_EXISTS:
+            case USERNAME_EXISTS:
+                return "USERNAME_OR_EMAIL_IN_USE";
+            case USER_CREATED_SUCCESSFULLY:
+                return "USER_CREATED_SUCCESSFULLY";
+            default:
+                return "ERROR";
+        }
     }
 
     @CrossOrigin(origins = "*")
@@ -79,15 +95,4 @@ public class recipeController {
         return rda.createNewRecipe(recipeRequest);
     }
     //*************************************RECIPE ENDPOINTS*************************************
-
-    @CrossOrigin(origins = "*")
-    @PostMapping("/AddUser")
-    public Boolean addUser(@RequestBody User u){
-
-        UsersDataAccessImpl uda = new UsersDataAccessImpl();
-        uda.createUser(u);
-
-        return true;
-    }
-
  }
